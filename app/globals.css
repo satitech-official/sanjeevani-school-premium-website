@@ -11,3 +11,11 @@
 .values-marquee{margin-top:42px;padding:21px 0 25px;background:linear-gradient(100deg,#f5faf7,#f2f9fd);border-block:1px solid #e3eee7;overflow:hidden}.marquee-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px;color:var(--green);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700}.marquee-heading button{display:flex;align-items:center;gap:6px;min-height:34px;padding:5px 11px;border:1px solid #c4d8cc;background:white;color:var(--green);border-radius:30px;font-size:11px;letter-spacing:0;text-transform:none}.marquee-window{overflow:hidden;mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent)}.marquee-track{display:flex;width:max-content;animation:values-scroll 42s linear infinite}.marquee-group{display:flex;flex-shrink:0;align-items:center;gap:16px;padding:0 16px 0 0;margin:0;list-style:none}.value-tag{display:flex;align-items:center;gap:13px;white-space:nowrap;background:white;padding:10px 19px;border:1px solid #dce8e0;border-radius:40px;color:var(--navy);font-size:13px;box-shadow:0 3px 8px #123b6604}.value-tag svg{color:var(--green);stroke-width:1.5}.tag-dot{height:4px;width:4px;background:#abc897;border-radius:50%}.values-marquee:hover .marquee-track,.values-marquee:focus-within .marquee-track,.values-marquee.is-paused .marquee-track{animation-play-state:paused}
 @media(max-width:760px){.values-marquee{margin-top:28px;padding-block:15px 20px}.value-tag{font-size:12px;padding:9px 15px}.marquee-track{animation-duration:48s}.nav.is-open{animation:school-enter .2s both}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;transform:none;width:100%}.marquee-group{flex-wrap:wrap;justify-content:center;width:100%;padding:0 18px;gap:10px}.marquee-group[aria-hidden=true]{display:none}.marquee-window{mask-image:none}.marquee-heading button{display:none}.highlights>div:hover,.life-card:hover,.stream-card:hover,.highlights>div:hover svg,.life-card:hover>svg,.stream-card:hover .stream-top svg{transform:none}}
+
+/* Keep all four academic options balanced across screen sizes. */
+@media (min-width: 1100px) {
+  .stream-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 761px) and (max-width: 1099px) {
+  .stream-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

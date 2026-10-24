@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, ArrowUp, BookOpen, GraduationCap, Languages, Leaf, Phone, MapPin, Instagram, Facebook, Menu, X, FlaskConical, ChartNoAxesCombined, Sprout, HeartHandshake, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowUp, BookOpen, GraduationCap, Languages, Leaf, Phone, MapPin, Instagram, Facebook, Menu, X, FlaskConical, ChartNoAxesCombined, Sprout, HeartHandshake, ShieldCheck, Calculator } from 'lucide-react';
 import { copy, school } from '../lib/content';
 import ValuesMarquee from './ValuesMarquee';
 const ids = ['home','about','academics','admissions','school-life','contact'];
@@ -24,7 +24,41 @@ export default function SchoolHome() {
  <div className="wrap highlights">{t.highlights.map((text,i)=>{const Icon=highlightIcons[i];return <div key={text}><Icon size={27}/><span>{text}</span></div>;})}</div>
  <ValuesMarquee items={[...t.highlights, ...t.pillars]} lang={lang}/>
  <section id="about" className="section wrap about-grid"><Reveal><p className="eyebrow">{t.aboutLabel}</p><h2>{t.aboutTitle}<em>{t.aboutAccent}</em></h2><p>{t.about}</p><p>{t.about2}</p><ArrowLink className="outline" href="#contact">{t.storyLink}</ArrowLink></Reveal><Reveal className="legacy"><div className="legacy-top"><span>{t.legacy}</span><strong>1999</strong><p>{t.legacyText}</p><small>{t.founder}</small></div><div className="pillars">{t.pillars.map((p,i)=><div key={p}><span>0{i+1}</span><div><h3>{p}</h3><p>{t.pillarText[i]}</p></div></div>)}</div></Reveal></section>
- <section id="academics" className="academic-section"><div className="wrap"><Reveal className="center"><p className="eyebrow">{t.academicLabel}</p><h2>{t.academicTitle}</h2><p className="section-intro">{t.academicIntro}</p></Reveal><div className="stream-grid">{t.streams.map((stream,i)=>{const Icon=[FlaskConical,ChartNoAxesCombined,Sprout][i];return <Reveal key={stream}><a className="stream-card" href={`tel:${school.phone}`} aria-label={`${stream}: ${t.streamLink}`}><div className="stream-top"><Icon size={34}/><span>0{i+1}</span></div><p>{t.streamTags[i]}</p><h3>{stream}</h3><div className="stream-bottom">{t.streamLink}<ArrowRight size={19}/></div></a></Reveal>;})}</div></div></section>
+ <section id="academics" className="academic-section">
+   <div className="wrap">
+     <Reveal className="center">
+       <p className="eyebrow">{t.academicLabel}</p>
+       <h2>{t.academicTitle}</h2>
+       <p className="section-intro">{t.academicIntro}</p>
+     </Reveal>
+     <div className="stream-grid">
+       {t.streams.map((stream, index) => {
+         const Icon = [FlaskConical, Calculator, ChartNoAxesCombined, Sprout][index];
+
+         return (
+           <Reveal key={stream}>
+             <a
+               className="stream-card"
+               href={`tel:${school.phone}`}
+               aria-label={`${stream}: ${t.streamLink}`}
+             >
+               <div className="stream-top">
+                 <Icon size={34} />
+                 <span>{String(index + 1).padStart(2, '0')}</span>
+               </div>
+               <p>{t.streamTags[index]}</p>
+               <h3>{stream}</h3>
+               <div className="stream-bottom">
+                 {t.streamLink}
+                 <ArrowRight size={19} />
+               </div>
+             </a>
+           </Reveal>
+         );
+       })}
+     </div>
+   </div>
+ </section>
  <section id="school-life" className="section wrap"><Reveal className="life-heading"><div><p className="eyebrow">{t.lifeLabel}</p><h2>{t.lifeTitle}</h2></div><p>{t.lifeIntro}</p></Reveal><div className="life-grid">{t.lifeCards.map((title,i)=>{const Icon=[HeartHandshake,ShieldCheck,Leaf][i];return <Reveal className="life-card" key={title}><Icon size={30}/><h3>{title}</h3><p>{t.lifeTexts[i]}</p></Reveal>;})}</div><Reveal className="campus-strip"><div className="campus-icon"><GraduationCap size={40}/></div><div><h3>{t.campusTitle}</h3><p>{t.campusText}</p></div><ArrowLink className="outline" href={`tel:${school.phone}`}>{t.campusLink}</ArrowLink></Reveal></section>
  <section id="admissions" className="wrap admissions"><div className="admission-decoration" aria-hidden="true"><Sprout/></div><Reveal><p className="eyebrow">{t.admissionLabel}</p><h2>{t.admissionTitle}</h2><p>{t.admissionText}</p><a className="button white" href={`tel:${school.phone}`}><Phone size={17}/>{t.call}<ArrowRight size={17}/></a><small>{t.admissionNote}</small></Reveal></section>
  <section id="contact" className="section wrap contact-grid"><div><p className="eyebrow">{t.contactLabel}</p><h2>{t.contactTitle}</h2><p>{t.location}</p></div><div className="contact-item"><MapPin/><h3>{t.addressLabel}</h3><p>{t.address}</p><a className="text-link" href={school.maps}>{t.directions}<ArrowRight size={16}/></a></div><div className="contact-item"><Phone/><h3>{t.phoneTitle}</h3><a href={`tel:${school.phone}`}>{school.phoneLabel}</a><h3 className="social-title">{t.social}</h3><div className="social-links"><a href={school.instagram} aria-label="Instagram"><Instagram/></a><a href={school.facebook} aria-label="Facebook"><Facebook/></a></div></div></section>
