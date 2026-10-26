@@ -95,3 +95,17 @@
 }
 
 html[lang="hi"] .brand strong, html[lang="hi"] .crest-title, html[lang="hi"] .crest-panel p, html[lang="hi"] .stream-card h3, html[lang="hi"] .footer-top p { font-family: var(--font-devanagari), sans-serif; }
+
+/* Keep social photographs local so they do not depend on expiring CDN links. */
+.school-photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 34px; }
+.school-photo { min-width: 0; margin: 0; border: 1px solid #dfe9e5; border-radius: 16px; overflow: hidden; background: #fff; }
+.school-photo-frame { overflow: hidden; aspect-ratio: 1; background: var(--soft); }
+.school-photo-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.school-photo:hover img { transform: scale(1.025); }
+.school-photo figcaption { padding: 22px; }
+.school-photo h3 { font-size: 21px; line-height: 1.4; }
+.school-photo .text-link { margin-top: 15px; font-size: 12px; }
+.school-moments { padding-top: 0; }
+@media (max-width: 1000px) { .school-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .school-photo-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
+@media (prefers-reduced-motion: reduce) { .school-photo-frame img { transition: none; } .school-photo:hover img { transform: none; } }
