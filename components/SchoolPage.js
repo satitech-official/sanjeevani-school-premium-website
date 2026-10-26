@@ -1,0 +1,45 @@
+'use client';
+import Link from 'next/link';
+import { ArrowRight, BookOpen, CalendarDays, Images, MapPin, Phone, Leaf, Instagram, Facebook } from 'lucide-react';
+import { copy, school } from '../lib/content';
+import { pageContent } from '../lib/pages';
+import { SchoolHeader, SchoolFooter, useSchoolLanguage } from './SchoolLayout';
+
+export default function SchoolPage({ page }) {
+  const { lang, toggleLanguage } = useSchoolLanguage();
+  const t = copy[lang];
+  const content = pageContent[page][lang];
+  const isEmpty = page === 'gallery' || page === 'news-events';
+  const Icon = page === 'gallery' ? Images : page === 'news-events' ? CalendarDays : BookOpen;
+
+  return (
+    <>
+      <a className="skip" href="#main">{t.skip}</a>
+      <div className="announcement" id="top"><span><Leaf size={14}/>{t.notice}</span><a href={`tel:${school.phone}`}>{t.talk}<ArrowRight size={14}/></a></div>
+      <SchoolHeader t={t} lang={lang} toggleLanguage={toggleLanguage} active={`/${page}/`}/>
+      <main id="main" className={`inner-page page-${page}`}>
+        <section className="page-hero">
+          <div className="wrap">
+            <nav className="breadcrumbs" aria-label={lang === 'hi' ? 'पृष्ठ पथ' : 'Breadcrumb'}><Link href="/">{t.nav[0]}</Link><span aria-hidden="true">/</span><span aria-current="page">{content.eyebrow}</span></nav>
+            <p className="eyebrow">{content.eyebrow}</p>
+            <h1>{content.title}</h1>
+            <p className="page-intro">{content.intro}</p>
+          </div>
+          <Leaf className="page-leaf" aria-hidden="true"/>
+        </section>
+        <section className="wrap section page-content">
+          <div className={isEmpty ? 'empty-content' : 'page-section-heading'}>
+            {isEmpty && <Icon size={44} strokeWidth={1.3} aria-hidden="true"/>}
+            <h2>{content.section}</h2>
+            <p>{content.body}</p>
+            {isEmpty && <div className="actions"><a className="button" href={school.instagram}><Instagram size={17}/>Instagram</a><a className="button outline" href={school.facebook}><Facebook size={17}/>Facebook</a></div>}
+          </div>
+          {content.cards.length > 0 && <div className="detail-grid">{content.cards.map(([title, description], index) => <article className="detail-card" key={title}><span className="detail-number">{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p>{page === 'academics' && <Link href="/admissions/" className="text-link">{t.apply}<ArrowRight size={16}/></Link>}</article>)}</div>}
+          {(page === 'contact' || page === 'admissions') && <div className="contact-panel"><div><MapPin aria-hidden="true"/><h3>{t.addressLabel}</h3><p>{t.address}</p><a className="text-link" href={school.maps}>{t.directions}<ArrowRight size={16}/></a></div><div><Phone aria-hidden="true"/><h3>{t.phoneTitle}</h3><a className="phone-number" href={`tel:${school.phone}`}>{school.phoneLabel}</a><p>{page === 'admissions' ? t.admissionNote : t.location}</p></div></div>}
+          {page !== 'privacy-policy' && <div className="page-callout"><div><h3>{t.campusTitle}</h3><p>{t.campusText}</p></div><a href={`tel:${school.phone}`} className="button"><Phone size={17}/>{t.call}</a></div>}
+        </section>
+      </main>
+      <SchoolFooter t={t} lang={lang}/>
+    </>
+  );
+}

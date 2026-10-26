@@ -4,7 +4,7 @@
 
 **Preview URL:** https://satitech-official.github.io/sanjeevani-school-premium-website/
 
-Phase 1: bilingual homepage and responsive design foundation.
+Phase 2: bilingual public pages and responsive navigation.
 
 ## Run
 
@@ -21,7 +21,7 @@ The homepage uses the supplied official logo and school information. Its visual 
 
 Edit bilingual text and verified contact details in `lib/content.js`; styling in `app/globals.css`; homepage sections in `components/SchoolHome.js`. The campus image is optional and must be school-approved. Both languages work without external translation services.
 
-This release has direct phone enquiries only. Database enquiries, standalone pages, media management and the admin dashboard are subsequent phases, not operational features of this version. See [phase plan and content requirements](docs/PHASES.md).
+This release has direct phone enquiries only. Standalone About, Academics, Admissions, Facilities, Gallery, News & Events, Contact and Privacy pages are available. Database enquiries, media management and the admin dashboard remain subsequent phases. See [phase plan and content requirements](docs/PHASES.md).
 
 ## GitHub Pages
 
