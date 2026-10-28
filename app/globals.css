@@ -132,3 +132,48 @@ html[lang="hi"] .brand strong, html[lang="hi"] .crest-title, html[lang="hi"] .cr
   .page-hero-visual::before { border-radius: 46px 14px 46px 14px; }
   .page-photo-label { left: 18px; font-size: 11px; padding: 10px 16px; }
 }
+
+/* One-time motion keeps reading calm and never hides content before JavaScript loads. */
+@keyframes section-arrive {
+  from { opacity: .25; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-arrive {
+  from { opacity: .2; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes photo-arrive {
+  from { opacity: .3; transform: translateY(16px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes rule-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.motion-main [data-revealed="true"] { animation: section-arrive .55s cubic-bezier(.22,.61,.36,1) var(--reveal-delay, 0ms) backwards; }
+.page-hero-copy .eyebrow { animation: hero-arrive .55s ease-out both; }
+.page-hero-copy h1 { animation: hero-arrive .65s ease-out .08s both; }
+.page-hero-copy .page-intro { animation: hero-arrive .65s ease-out .16s both; }
+.page-hero-visual { animation: photo-arrive .8s cubic-bezier(.22,.61,.36,1) .12s backwards; }
+.page-hero-rule span { transform-origin: left; animation: rule-draw .7s ease-out .25s both; }
+.page-photo-label { animation: hero-arrive .6s ease-out .3s backwards; }
+.hero-note .mini-line { transform-origin: left; animation: rule-draw .8s ease-out .3s both; }
+.school-photo { transition: box-shadow .25s ease, border-color .25s ease; }
+.page-hero-photo img { transition: transform .6s ease; }
+.page-callout { transition: box-shadow .25s ease; }
+.button svg, .text-link svg { transition: transform .22s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .page-hero-visual:hover .page-hero-photo img { transform: scale(1.035); }
+  .school-photo:hover { border-color: #9cbbab; box-shadow: 0 12px 30px #123b6610; }
+  .page-callout:hover { box-shadow: 0 10px 28px #123b660d; }
+  .button:hover svg:last-child, .text-link:hover svg:last-child { transform: translateX(3px); }
+}
+.button:focus-visible svg:last-child, .text-link:focus-visible svg:last-child { transform: translateX(3px); }
+@media (max-width: 760px) {
+  .motion-main [data-revealed="true"] { animation-duration: .4s; animation-delay: 0ms; }
+  .page-hero-visual { animation-duration: .55s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-main [data-revealed], .page-hero-copy > *, .page-hero-visual, .page-photo-label, .page-hero-rule span, .hero-note .mini-line { animation: none !important; }
+  .page-hero-visual:hover .page-hero-photo img, .button svg, .text-link svg { transform: none !important; }
+}

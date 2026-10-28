@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import MotionMain from './MotionMain';
 import SchoolPhotos from './SchoolPhotos';
 import PageHero from './PageHero';
 import { ArrowRight, MapPin, Phone, Leaf } from 'lucide-react';
@@ -17,7 +18,7 @@ export default function SchoolPage({ page }) {
       <a className="skip" href="#main">{t.skip}</a>
       <div className="announcement" id="top"><span><Leaf size={14}/>{t.notice}</span><a href={`tel:${school.phone}`}>{t.talk}<ArrowRight size={14}/></a></div>
       <SchoolHeader t={t} lang={lang} toggleLanguage={toggleLanguage} active={`/${page}/`}/>
-      <main id="main" className={`inner-page page-${page}`}>
+      <MotionMain className={`inner-page page-${page}`}>
         <PageHero page={page} content={content} lang={lang} homeLabel={t.nav[0]}/>
         <section className="wrap section page-content">
           <div className="page-section-heading">
@@ -29,7 +30,7 @@ export default function SchoolPage({ page }) {
           {(page === 'contact' || page === 'admissions') && <div className="contact-panel"><div><MapPin aria-hidden="true"/><h3>{t.addressLabel}</h3><p>{t.address}</p><a className="text-link" href={school.maps}>{t.directions}<ArrowRight size={16}/></a></div><div><Phone aria-hidden="true"/><h3>{t.phoneTitle}</h3><a className="phone-number" href={`tel:${school.phone}`}>{school.phoneLabel}</a><p>{page === 'admissions' ? t.admissionNote : t.location}</p></div></div>}
           {page !== 'privacy-policy' && <div className="page-callout"><div><h3>{t.campusTitle}</h3><p>{t.campusText}</p></div><a href={`tel:${school.phone}`} className="button"><Phone size={17}/>{t.call}</a></div>}
         </section>
-      </main>
+      </MotionMain>
       <SchoolFooter t={t} lang={lang}/>
     </>
   );
