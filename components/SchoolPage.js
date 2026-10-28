@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import SchoolPhotos from './SchoolPhotos';
+import PageHero from './PageHero';
 import { ArrowRight, MapPin, Phone, Leaf } from 'lucide-react';
 import { copy, school } from '../lib/content';
 import { pageContent } from '../lib/pages';
@@ -17,15 +18,7 @@ export default function SchoolPage({ page }) {
       <div className="announcement" id="top"><span><Leaf size={14}/>{t.notice}</span><a href={`tel:${school.phone}`}>{t.talk}<ArrowRight size={14}/></a></div>
       <SchoolHeader t={t} lang={lang} toggleLanguage={toggleLanguage} active={`/${page}/`}/>
       <main id="main" className={`inner-page page-${page}`}>
-        <section className="page-hero">
-          <div className="wrap">
-            <nav className="breadcrumbs" aria-label={lang === 'hi' ? 'पृष्ठ पथ' : 'Breadcrumb'}><Link href="/">{t.nav[0]}</Link><span aria-hidden="true">/</span><span aria-current="page">{content.eyebrow}</span></nav>
-            <p className="eyebrow">{content.eyebrow}</p>
-            <h1>{content.title}</h1>
-            <p className="page-intro">{content.intro}</p>
-          </div>
-          <Leaf className="page-leaf" aria-hidden="true"/>
-        </section>
+        <PageHero page={page} content={content} lang={lang} homeLabel={t.nav[0]}/>
         <section className="wrap section page-content">
           <div className="page-section-heading">
             <h2>{content.section}</h2>

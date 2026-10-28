@@ -109,3 +109,26 @@ html[lang="hi"] .brand strong, html[lang="hi"] .crest-title, html[lang="hi"] .cr
 @media (max-width: 1000px) { .school-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .school-photo-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
 @media (prefers-reduced-motion: reduce) { .school-photo-frame img { transition: none; } .school-photo:hover img { transform: none; } }
+
+.illustrated-hero { padding-bottom: 64px; }
+.page-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: clamp(30px, 5vw, 76px); }
+.page-hero-copy { position: relative; z-index: 1; min-width: 0; }
+.page-hero-copy h1 { font-size: clamp(36px, 4vw, 56px); max-width: 650px; }
+.page-hero-copy .page-intro { max-width: 510px; }
+.page-hero-rule { display: flex; align-items: center; gap: 16px; color: var(--green); margin-top: 30px; }
+.page-hero-rule span { width: 70px; height: 1px; background: #95b9a8; }
+.page-hero-visual { position: relative; min-width: 0; padding: 0 12px 18px 0; }
+.page-hero-visual::before { content: ''; position: absolute; inset: 18px 0 0 18px; border: 1px solid #9fbdad; border-radius: 70px 18px 70px 18px; }
+.page-hero-photo { position: relative; aspect-ratio: 1.35; border-radius: 70px 18px 70px 18px; overflow: hidden; background: #dce9e4; box-shadow: 0 16px 40px #123b6612; }
+.page-photo-label { position: absolute; bottom: 4px; left: 24px; display: flex; align-items: center; gap: 10px; padding: 11px 20px; max-width: calc(100% - 48px); border-radius: 8px; color: white; background: var(--green); font-size: 12px; line-height: 1.5; }
+.page-photo-label svg { flex-shrink: 0; }
+@media (max-width: 760px) {
+  .illustrated-hero { padding-bottom: 40px; }
+  .page-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .page-hero-copy h1 { font-size: clamp(34px, 7vw, 48px); }
+  .page-hero-rule { margin-top: 20px; }
+  .page-hero-visual { width: 100%; max-width: 560px; }
+  .page-hero-photo { aspect-ratio: 1.6; border-radius: 46px 14px 46px 14px; }
+  .page-hero-visual::before { border-radius: 46px 14px 46px 14px; }
+  .page-photo-label { left: 18px; font-size: 11px; padding: 10px 16px; }
+}
