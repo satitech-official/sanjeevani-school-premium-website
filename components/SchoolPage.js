@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import MotionMain from './MotionMain';
 import SchoolPhotos from './SchoolPhotos';
+import LearningJourney from './LearningJourney';
 import PageHero from './PageHero';
 import { ArrowRight, MapPin, Phone, Leaf } from 'lucide-react';
 import { copy, school } from '../lib/content';
@@ -30,6 +31,7 @@ export default function SchoolPage({ page }) {
           {(page === 'contact' || page === 'admissions') && <div className="contact-panel"><div><MapPin aria-hidden="true"/><h3>{t.addressLabel}</h3><p>{t.address}</p><a className="text-link" href={school.maps}>{t.directions}<ArrowRight size={16}/></a></div><div><Phone aria-hidden="true"/><h3>{t.phoneTitle}</h3><a className="phone-number" href={`tel:${school.phone}`}>{school.phoneLabel}</a><p>{page === 'admissions' ? t.admissionNote : t.location}</p></div></div>}
           {page !== 'privacy-policy' && <div className="page-callout"><div><h3>{t.campusTitle}</h3><p>{t.campusText}</p></div><a href={`tel:${school.phone}`} className="button"><Phone size={17}/>{t.call}</a></div>}
         </section>
+        {(page === 'about' || page === 'academics') && <LearningJourney lang={lang}/>}
       </MotionMain>
       <SchoolFooter t={t} lang={lang}/>
     </>

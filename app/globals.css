@@ -177,3 +177,48 @@ html[lang="hi"] .brand strong, html[lang="hi"] .crest-title, html[lang="hi"] .cr
   .motion-main [data-revealed], .page-hero-copy > *, .page-hero-visual, .page-photo-label, .page-hero-rule span, .hero-note .mini-line { animation: none !important; }
   .page-hero-visual:hover .page-hero-photo img, .button svg, .text-link svg { transform: none !important; }
 }
+
+/* A school-themed interactive story: book, blackboard, then a growing tree. */
+.learning-journey { color: var(--navy); }
+.journey-heading { max-width: 740px; margin-bottom: 34px; }
+.journey-heading > p:last-child { max-width: 650px; }
+.journey-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; position: relative; }
+.journey-steps button { display: flex; align-items: center; gap: 14px; padding: 20px 24px; border: 1px solid #cbded3; border-radius: 12px; background: #f6faf7; color: var(--navy); text-align: left; transition: background .25s,color .25s,box-shadow .25s; }
+.journey-steps button[aria-pressed="true"] { background: var(--navy); color: #fff; box-shadow: 0 7px 20px #123b6618; }
+.journey-step-number { font-family: Georgia,serif; font-size: 20px; opacity: .65; }
+.journey-panel { margin-top: 20px; display: grid; grid-template-columns: 1.2fr 1fr; border: 1px solid #dce8df; border-radius: 20px; overflow: hidden; background: #fff; }
+.journey-art { padding: 30px; background-color: #f1f7f2; background-image: linear-gradient(#d6e5db60 1px,transparent 1px),linear-gradient(90deg,#d6e5db60 1px,transparent 1px); background-size: 26px 26px; display: flex; flex-direction: column; justify-content: center; }
+.journey-drawing { width: 100%; height: auto; overflow: visible; }
+.journey-caption { text-align: center; font-size: 12px; color: #536d61; padding: 12px 0; }
+.journey-copy { padding: clamp(25px,4vw,54px); align-self: center; }
+.journey-copy h3 { font: 32px/1.25 Georgia,var(--font-devanagari),serif; margin-top: 18px; }
+.journey-copy p { font-size: 14px; }
+.journey-chapter { color: var(--green); font-size: 12px; letter-spacing: 2px; }
+.journey-replay { display: inline-flex; align-items: center; gap: 9px; background: none; border: 0; color: var(--green); padding: 12px 0; margin-top: 20px; font-size: 12px; }
+.journey-answer { margin-top: 22px; }
+.journey-answer .button:disabled { opacity: .6; cursor: default; }
+.journey-answer [role="status"] { min-height: 24px; color: var(--green); }
+.journey-values { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.journey-values span { border: 1px solid #cbdfce; border-radius: 30px; padding: 5px 12px; font-size: 12px; color: var(--green); }
+@keyframes chalk-write { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes leaf-unfold { from { opacity: 0; scale: .1; } to { opacity: 1; scale: 1; } }
+@keyframes book-open { from { opacity: .2; transform: scaleX(.25); } to { opacity: 1; transform: scaleX(1); } }
+@keyframes block-place { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
+.chalk-stroke, .tree-trunk { stroke-dasharray: 1; animation: chalk-write 1s ease-out both; }
+.tree-trunk { animation-duration: 1.3s; }
+.book-left,.book-right { transform-origin: 250px 190px; animation: book-open .8s ease-out both; }
+.growing-leaf { animation: leaf-unfold .6s ease-out both; }
+.number-block { animation: block-place .45s ease-out both; }
+.journey-star { transform-origin: 350px 72px; animation: leaf-unfold .6s ease-out .6s both; }
+.discovery-trail { animation: section-arrive .8s ease-out .4s backwards; }
+@media(max-width:760px) {
+  .journey-panel { grid-template-columns: minmax(0,1fr); }
+  .journey-steps { gap: 8px; }
+  .journey-steps button { flex-direction: column; padding: 14px 6px; gap: 7px; font-size: 13px; }
+  .journey-step-number { font-size: 13px; }
+  .journey-art { padding: 18px; }
+  .journey-copy h3 { font-size: 28px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .journey-drawing * { animation: none !important; stroke-dashoffset: 0; }
+}

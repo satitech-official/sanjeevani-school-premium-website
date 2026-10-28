@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowUp, BookOpen, GraduationCap, Languages, Leaf, Phone, MapPin, Instagram, Facebook, Menu, X, FlaskConical, ChartNoAxesCombined, Sprout, HeartHandshake, ShieldCheck, Calculator } from 'lucide-react';
 import { copy, school } from '../lib/content';
 import SchoolPhotos from './SchoolPhotos';
+import LearningJourney from './LearningJourney';
 import { imagePath, schoolPhotos } from '../lib/media';
 import ValuesMarquee from './ValuesMarquee';
 import Link from 'next/link';
@@ -58,6 +59,7 @@ export default function SchoolHome() {
      </div>
    </div>
  </section>
+ <LearningJourney lang={lang}/>
  <section id="school-life" className="section wrap"><Reveal className="life-heading"><div><p className="eyebrow">{t.lifeLabel}</p><h2>{t.lifeTitle}</h2></div><p>{t.lifeIntro}</p></Reveal><div className="life-grid">{t.lifeCards.map((title,i)=>{const Icon=[HeartHandshake,ShieldCheck,Leaf][i];return <Reveal className="life-card" key={title}><Icon size={30}/><h3>{title}</h3><p>{t.lifeTexts[i]}</p></Reveal>;})}</div><Reveal className="campus-strip"><div className="campus-icon"><GraduationCap size={40}/></div><div><h3>{t.campusTitle}</h3><p>{t.campusText}</p></div><ArrowLink className="outline" href={`tel:${school.phone}`}>{t.campusLink}</ArrowLink></Reveal></section>
  <section className="section wrap school-moments">
    <div className="life-heading">
